@@ -1,0 +1,7 @@
+jsonref
+jsonschema
+json-schema-for-humans
+paho-mqtt
+cbor
+numpy
+jinja2

@@ -1,0 +1,207 @@
+{
+    "version": "0.1",
+    "servers": [
+        {
+            "description": "Local development Broker (Mosquitto)",
+            "url": "127.0.0.1:1883"
+        }
+    ],
+    "topics": {
+        "/cbor/cos": {
+            "QoS": 2,
+            "subscribe": {
+                "sampling": {
+                    "type": "sync",
+                    "sample-rate": 10000.0,
+                    "clock": "gPTP"
+                },
+                "payload": {
+                    "cbor/json/sync": {
+                        "schema": {
+                            "type": "number",
+                            "range": {
+                                "min": -2.5,
+                                "max": 2.5
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cbor/sin/10000": {
+            "QoS": 2,
+            "subscribe": {
+                "sampling": {
+                    "type": "sync",
+                    "sample-rate": 10000.0,
+                    "clock": "gPTP"
+                },
+                "payload": {
+                    "cbor/json/sync": {
+                        "schema": {
+                            "type": "number",
+                            "range": {
+                                "min": -1,
+                                "max": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/cbor/sin/500": {
+            "QoS": 2,
+            "subscribe": {
+                "payload": {
+                    "cbor/json/sync": {
+                        "schema": {
+                            "type": "number",
+                            "range": {
+                                "min": -1,
+                                "max": 1
+                            }
+                        }
+                    }
+                },
+                "sampling": {
+                    "sample-rate": 500.0,
+                    "type": "sync",
+                    "clock": "gPTP"
+                }
+            }
+        },
+        "/my/topic/as/json": {
+            "description": "Subscribing to an example Topic providing a schema for JSON.",
+            "subscribe": {
+                "sampling": {
+                    "type": "async"
+                },
+                "payload": {
+                    "text/json": {
+                        "schema": {
+                            "property-1": {
+                                "type": "number"
+                            },
+                            "property-2": {
+                                "type": "object",
+                                "properties": {
+                                    "nested-1": {
+                                        "type": "object",
+                                        "properties": {
+                                            "nested-2": {
+                                                "type": "number",
+                                                "range": {
+                                                    "min": -1,
+                                                    "max": 1
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "example": {
+                            "property-1": 1.27,
+                            "property-2": 124,
+                            "property-3": {
+                                "nested-1": {
+                                    "nested-2": 1.27
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/my/topic/as/text": {
+            "description": "Subscribing to an example Topic providing a schema for Text.",
+            "subscribe": {
+                "sampling": {
+                    "type": "async"
+                },
+                "payload": {
+                    "text/plain": {
+                        "schema": {
+                            "type": "number",
+                            "range": {
+                                "min": -1,
+                                "max": 1
+                            }
+                        },
+                        "example": 1.26
+                    }
+                }
+            }
+        },
+        "/using/reuseable/components": {
+            "description": "Using reuseable components.",
+            "subscribe": {
+                "sampling": {
+                    "$ref": "#/defaults/sampling"
+                },
+                "payload": {
+                    "text/json": {
+                        "$ref": "#/components/schemas/reuseable"
+                    }
+                }
+            }
+        },
+        "/publish/to/my/first/channel": {
+            "description": "Publishing a sync channel and downsample.",
+            "publish": {
+                "sampling": {
+                    "type": "sync",
+                    "downsampling-factor": 5
+                },
+                "payload": {
+                    "samples-per-packet": 10,
+                    "type": "number"
+                }
+            }
+        },
+        "/publish/to/my/second/channel": {
+            "description": "Publishing a simple async channel.",
+            "publish": {
+                "sampling": {
+                    "type": "async"
+                },
+                "payload": {
+                    "type": "number"
+                }
+            }
+        },
+        "/subscribe/text": {
+            "description": "Subscribe to a Text-Message.",
+            "subscribe": {
+                "sampling": {
+                    "$ref": "#/defaults/sampling"
+                },
+                "payload": {
+                    "text/plain": {
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Hello World!"
+                    }
+                }
+            }
+        }
+    },
+    "defaults": {
+        "sampling": {
+            "type": "async"
+        }
+    },
+    "components": {
+        "schemas": {
+            "reuseable": {
+                "description": "A reuseable Schema",
+                "schema": {
+                    "property-1": {
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

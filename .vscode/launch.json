@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Debug Oxygen-Plugin",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "C:\\Program Files\\DEWETRON\\OXYGEN\\bin\\Oxygen.exe",
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "copy plugin to oxygen-path"
+        }
+    ]
+}
