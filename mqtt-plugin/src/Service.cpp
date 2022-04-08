@@ -39,9 +39,12 @@ void Service::disconnect()
     std::lock_guard<std::mutex> lock(m_mtx);
     if (m_client)
     {
-        m_client->disconnect(100)->wait();
-        m_client->disable_callbacks();
-        m_client.reset();
+        if (m_client->is_connected())
+        {
+            m_client->disconnect(100)->wait();
+            m_client->disable_callbacks();
+            m_client.reset();
+        }
     }
 }
 
