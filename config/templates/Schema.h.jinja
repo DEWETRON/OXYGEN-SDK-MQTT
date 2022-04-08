@@ -1,0 +1,12 @@
+#pragma once
+#include <nlohmann/json.hpp>
+
+namespace plugin::mqtt::config::details
+{
+/**
+ * @brief The schema used to validate JSON configuration-files
+ */
+inline nlohmann::json configuration_file_schema = R"(
+/*{ schema }*/
+)"_json;
+}
