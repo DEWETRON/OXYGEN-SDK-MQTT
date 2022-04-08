@@ -1,6 +1,6 @@
 # OXYGEN MQTT-Plugin
 
-The latest documentation can be found on GitHub Pages.
+The latest documentation can be found on GitHub Pages https://dewetron.github.io/OXYGEN-SDK-MQTT/.
 
 ## Debug and Build the Plugin
 
