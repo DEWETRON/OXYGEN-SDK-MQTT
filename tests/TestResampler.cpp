@@ -62,7 +62,7 @@ public:
         Packet p;
         p.timestamp = m_samples[num_samples - 1].timestamp;
 
-        for (int i = 0; i < num_samples; i++)
+        for (size_t i = 0; i < num_samples; i++)
         {
             Sample s = m_samples.front();
             p.samples.push_back(s.value);

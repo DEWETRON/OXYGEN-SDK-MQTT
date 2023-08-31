@@ -3,6 +3,7 @@
 #include "resampling/StreamClock.h"
 
 //
+#include <cstdint>
 #include <optional>
 #include <vector>
 

@@ -29,7 +29,7 @@ std::string getCurrentDllPath()
 	GetModuleFileNameA(phModule, path, sizeof(path));
 	std::filesystem::path res(path);
 	return res.parent_path().u8string();
-#elif
+#else
 	return std::string();
 #endif
 }

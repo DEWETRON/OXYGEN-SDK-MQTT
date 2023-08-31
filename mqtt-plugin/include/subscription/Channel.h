@@ -4,12 +4,11 @@
 #include "Types.h"
 #include "subscription/decoding/Decoder.h"
 
+#include <mqtt/message.h>
+
 //
 #include <memory>
 #include <vector>
-
-//
-#include "mqtt/message.h"
 
 namespace plugin::mqtt
 {

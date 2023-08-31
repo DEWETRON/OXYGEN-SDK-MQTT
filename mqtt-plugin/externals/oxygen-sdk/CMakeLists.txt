@@ -13,16 +13,19 @@ if(NOT DEFINED ENV{OXYGEN_SDK_ROOT})
     GIT_REPOSITORY https://github.com/DEWETRON/OXYGEN-SDK.git
   )
 
-  #
-  # Fetch boost
-  SET(BOOST_UNPACK_PATH  ${oxygen_SOURCE_DIR}/3rdparty/boost_1_70_0/)
+  if (WIN32_DISABLED)
+    message(STATUS "Fetching Boost...")
+    #
+    # Fetch boost
+    SET(BOOST_UNPACK_PATH  ${oxygen_SOURCE_DIR}/3rdparty/boost_1_70_0/)
 
-  # message(STATUS "Fetching boost v1.70.0...")
-  FetchContent_Populate(
-    boost_1_70_0 
-    URL https://boostorg.jfrog.io/artifactory/main/release/1.70.0/source/boost_1_70_0.zip
-    SOURCE_DIR ${BOOST_UNPACK_PATH}
-  )
+    # message(STATUS "Fetching boost v1.70.0...")
+    FetchContent_Populate(
+      boost_1_70_0 
+      URL https://boostorg.jfrog.io/artifactory/main/release/1.70.0/source/boost_1_70_0.zip
+      SOURCE_DIR ${BOOST_UNPACK_PATH}
+    )
+  ENDIF()
 
   if(WIN32)
     #

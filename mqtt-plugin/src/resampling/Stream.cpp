@@ -69,13 +69,13 @@ namespace
 
 }
 
-Stream::Stream(StreamClock::Pointer clock, int nominal_sampling_rate) : m_clock(clock),
-                                                                        m_unrecoverable(false),
-                                                                        m_estimated_sampling_rate(std::nullopt),
-                                                                        m_nominal_sampling_interval(1 / static_cast<double>(nominal_sampling_rate)),
-                                                                        m_nominal_sampling_rate(nominal_sampling_rate),
-                                                                        m_actual_scnt(0),
-                                                                        m_packet_received_counter(0)
+Stream::Stream(StreamClock::Pointer clock, int nominal_sampling_rate) :
+    m_clock(clock),
+    m_nominal_sampling_rate(nominal_sampling_rate),
+    m_nominal_sampling_interval(1 / static_cast<double>(nominal_sampling_rate)),
+    m_unrecoverable(false),
+    m_actual_scnt(0),
+    m_packet_received_counter(0)
 {
 }
 
@@ -191,13 +191,13 @@ void Stream::append(std::vector<double> samples, double incoming_ts_seconds, std
         if (aligned_ts_seconds > (expected_packet_timestamp + (nominal_packet_interval * 0.25)))
         {
             // Packet lost based on timetamp estimation, align with stream
-            const auto diff = num - samples.size();
 
-            if (diff < 0)
+            if (num < samples.size())
             {
                 m_unrecoverable = true;
                 throw std::runtime_error("Error while recovering stream.");
             }
+            const auto diff = num - samples.size();
 
             std::vector<double> NaN;
             NaN.resize(static_cast<size_t>(diff));
