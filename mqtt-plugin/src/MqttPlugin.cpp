@@ -12,7 +12,7 @@
 #include "qml.rcc.h"
 
 //
-#include "fmt/core.h"
+#include <fmt/core.h>
 
 using namespace odk::framework;
 

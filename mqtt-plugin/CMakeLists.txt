@@ -53,8 +53,8 @@ include(OxygenPluginFunctions)
 set(MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 SetCommonOutputDirectory()
-SetBoostOptions()
-find_package(Boost REQUIRED)
+#SetBoostOptions()
+#find_package(Boost REQUIRED)
 find_package(SDKQt REQUIRED)
 
 message(STATUS "Qt5Core_RCC_EXECUTABLE = ${Qt5Core_RCC_EXECUTABLE}")
@@ -118,7 +118,8 @@ target_link_libraries(${PROJECT_NAME}
 
 target_include_directories(${PROJECT_NAME}
     PUBLIC include
-    SYSTEM ${Boost_INCLUDE_DIRS}
+    SYSTEM
+    #${Boost_INCLUDE_DIRS}
 )
 
 #

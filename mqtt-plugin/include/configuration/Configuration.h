@@ -71,7 +71,7 @@ namespace plugin::mqtt::config
          * @brief Get the Publish Handlers
          * @return Topics
          */
-        Topics Configuration::getPublishers();
+        Topics getPublishers();
 
         /**
          * @brief Get the Servers

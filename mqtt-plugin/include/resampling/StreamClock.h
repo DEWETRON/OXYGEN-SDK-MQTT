@@ -1,7 +1,7 @@
 #pragma once
 
 //
-#include <ctype.h>
+#include <cstdint>
 #include <memory>
 
 namespace plugin::mqtt

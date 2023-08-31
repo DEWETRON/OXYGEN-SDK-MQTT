@@ -1,19 +1,19 @@
 #pragma once
 
 //
-#include <memory>
-#include <functional>
-#include <mutex>
-
-//
 #include "configuration/Server.h"
 #include "subscription/Subscription.h"
 #include "publish/Publish.h"
 #include "Types.h"
-#include "fmt/core.h"
 
 //
-#include "mqtt/async_client.h"
+#include <fmt/core.h>
+#include <mqtt/async_client.h>
+
+//
+#include <memory>
+#include <functional>
+#include <mutex>
 
 namespace plugin::mqtt
 {
