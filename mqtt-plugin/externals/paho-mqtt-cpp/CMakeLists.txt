@@ -26,5 +26,9 @@ IF (MSVC)
 ELSE()
     message(STATUS "Setting up PAHO MQTT for Linux")
     find_package(PahoMqttC REQUIRED)
-    target_link_libraries(${PROJECT_NAME} PUBLIC PahoMqttC::PahoMqttC)
+    find_package(PahoMqttCpp REQUIRED)
+    target_link_libraries(${PROJECT_NAME} PUBLIC
+        PahoMqttC::PahoMqttC
+        PahoMqttCpp::PahoMqttCpp
+    )
 ENDIF()
