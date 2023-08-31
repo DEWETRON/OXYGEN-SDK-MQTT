@@ -2,15 +2,16 @@
 
 using namespace plugin::mqtt;
 
-Publish::Publish(std::string topic, std::string uuid, Publish::Sampling sampling, Datatype datatype, int packet_size, int QoS) : m_topic(topic),
-                                                                                                                                 m_uuid(uuid),
-                                                                                                                                 m_sampling(sampling),
-                                                                                                                                 m_input_channel(std::make_shared<odk::framework::EditableChannelIDProperty>()),
-                                                                                                                                 m_next_idx(0),
-                                                                                                                                 m_datatype(datatype),
-                                                                                                                                 m_packet_size(packet_size),
-                                                                                                                                 m_qos(QoS),
-                                                                                                                                 m_packet_idx(0)
+Publish::Publish(std::string topic, std::string uuid, Publish::Sampling sampling, Datatype datatype, int packet_size, int QoS) :
+    m_qos(QoS),
+    m_datatype(datatype),
+    m_topic(topic),
+    m_uuid(uuid),
+    m_sampling(sampling),
+    m_input_channel(std::make_shared<odk::framework::EditableChannelIDProperty>()),
+    m_next_idx(0),
+    m_packet_idx(0),
+    m_packet_size(packet_size)
 {
 }
 
